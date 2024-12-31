@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+   * {
+      margin: 0;
+      padding: 0;
+   }
+   body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      background-image: url('love.jpg'); /* Your background image */
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: relative;
+   }
+   
+   /* Dim the background */
+   body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* 50% transparent black */
+      z-index: -1; /* Ensure it's behind content */
+   }
+   
+   #letter {
+      background-image: url('https://media.tenor.com/PXKZhCEfEfsAAAAj/bubu-bubu-dudu.gif');
+      background-repeat: no-repeat;
+      width: 900px;
+      margin: 20px;
+      height: 500px;
+      background-color: #edd4ea;
+      opacity: 0;
+      transition: opacity 1s ease;
+      border-radius: 50px;
+      text-align: center;
+      font-family: cursive;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+   }
+
+   p {
+      font-size: x-large;
+      margin: 20px;
+   }
+
+   .love-button {
+      margin: 30px;
+      background: rgb(245, 215, 220);
+      color: black;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 50px; /* Rounded edges */
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+
+   .love-button::before {
+      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+   }
+
+   .love-button:hover {
+      transform: scale(1.1); /* Slightly enlarge button */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+   }
+
+   .love-button:hover::before {
+      opacity: 1; /* Show the heart on hover */
+      transform: translate(-50%, -50%) scale(1.2); /* Scale up the heart */
+   }
+   
+  </style>
+</head>
+<body>
+  <audio id="audioPlayer" src="love.mp3" preload="auto"></audio> <!-- Remove onclick here -->
+  <button class="love-button" id="open" onclick="a()">OPEN</button>
+  <div id="letter">
+    <h1>HAPPY NEW YEAR JAANU💕</h1>
+    <p>
+      Every moment with you has been filled with laughter and warmth, and I can't wait for all the memories we’re going to create in the year ahead.
+      <br>
+      You’ve already made my life so much brighter, and I feel incredibly lucky to have you by my side. Here's to more love, happiness, and adventures together.
+    </p>
+  </div>
+
+  <script>
+    var c = 0;
+    function a() {
+      if (c == 0) {
+        document.querySelector('div').style.opacity = 1;
+        document.querySelector('button').innerText = "CLOSE💕";
+        c = 1;
+        playAudio(); // Call playAudio function when the button is clicked
+      } else {
+        c = 0;
+        document.querySelector('div').style.opacity = 0;
+        document.querySelector('button').innerText = "OPEN💕";
+      }
+    }
+
+    function playAudio() {
+      const audio = document.getElementById('audioPlayer');
+      audio.play().catch(error => {
+        console.log("Audio play error:", error); // Catch any error that prevents audio from playing
+      });
+    }
+  </script>
+</body>
+</html>
